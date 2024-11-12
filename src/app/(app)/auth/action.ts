@@ -1,10 +1,9 @@
 'use server'
-import { getPayloadHMR } from "@payloadcms/next/utilities"
-import config from "@payload-config"
+import payload from "@/payload"
 import { z } from "zod"
 
 
-const payload = await getPayloadHMR({ config })
+
 
 const formSchema = z.object({
     email: z.string().email(),

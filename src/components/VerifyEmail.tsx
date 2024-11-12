@@ -16,11 +16,10 @@ const VerifyEmail = ({ token }: VerifyEmailProps) => {
 //   const { data, isLoading, isError } = trpc.auth.verifyEmail.useQuery({
 //     token,
 //   });
-const [isLoading, setIsLoading] = useState(false)
+const [isLoading, setIsLoading] = useState(true)
 const [isError, setIsError] = useState(false)
 
 useEffect(() => {
-    setIsLoading(true)
     const verify = async () => {
         const result = await verifyEmail(token)
         if(!result) {
@@ -55,17 +54,17 @@ useEffect(() => {
         </p>
       </div>
     );
-  } else {
+  } else if (!isLoading) {
     return (
       <div className="flex h-full flex-col items-center justify-center">
-        <div className="relative mb-4 h-60 w-60 text-muted-foreground">
-          <Image src="/hippo-email-sent.png" fill alt="The email was sent" />
+        <div className="relative mb-4 h-60 w-96 text-muted-foreground">
+          <Image src="/sent-to-mail.png" fill alt="The email was sent" />
         </div>
         <h3 className="font-semibold text-2xl"> You&apos;re all set</h3>
         <p className="text-muted-foreground text-center mt-1">
           Thank you for verifying your email
         </p>
-        <Link className={buttonVariants({ className: "mt-4" })} href="/sign-in">
+        <Link className={buttonVariants({ className: "mt-4" })} href="/auth/login">
           Continue to sign in
         </Link>
       </div>

@@ -1,5 +1,10 @@
 import { CollectionConfig } from "payload";
 
+// Make a unique slug from the title string
+function slugify(title: string) {
+  return title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
+}
+
 export const Causes: CollectionConfig = {
   slug: "causes",
   access: {
@@ -22,7 +27,22 @@ export const Causes: CollectionConfig = {
       required: true,
       hasMany: false,
     },
-    { name: "title", label: "Title", type: "text", required: true },
+    {
+      name: "title", 
+      label: "Title", 
+      type: "text", 
+      required: true 
+    },
+    {
+      name: "slug",
+      label: "Slug",
+      type: "text",
+      required: true,
+      unique: true,
+      admin: {
+        hidden: true
+      },
+    },
     {
       name: "description",
       label: "Description",
@@ -116,4 +136,16 @@ export const Causes: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    beforeChange: [
+      ({ data, operation }) => {
+        if (operation === "create" || operation === "update") {
+          if (data.title) {
+            data.slug = slugify(data.title);
+          }
+        }
+        return data;
+      },
+    ],
+  },
 };

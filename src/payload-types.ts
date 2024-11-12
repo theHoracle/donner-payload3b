@@ -133,6 +133,7 @@ export interface Cause {
   id: string;
   creator?: (string | null) | User;
   title: string;
+  slug: string;
   description: {
     root: {
       type: string;
@@ -315,6 +316,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface CausesSelect<T extends boolean = true> {
   creator?: T;
   title?: T;
+  slug?: T;
   description?: T;
   target?: T;
   raisedAmount?: T;

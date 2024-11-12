@@ -25,7 +25,7 @@ export default buildConfig({
   },
   collections: [Users, Media, Causes, Donations],
   email: resendAdapter({
-    defaultFromAddress: 'info@donnerfoundation.com',
+    defaultFromAddress: 'onboarding@resend.dev',
     defaultFromName: 'Donner Foundation',
     apiKey: process.env.RESEND_API_KEY || '',
   }),

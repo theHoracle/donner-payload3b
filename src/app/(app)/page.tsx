@@ -1,6 +1,15 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import Navbar from "@/components/Nav/Navbar";
+import AboutDonner from "@/components/sections/AboutDonner";
+import Causes from "@/components/sections/Causes";
+import { HowitWorks } from "@/components/sections/DonnerProcess";
+import DonnerProjects from "@/components/sections/DonnerProjects";
+import EventsCalender from "@/components/sections/EventsCalender";
+import FoundationTeam from "@/components/sections/FoundationTeam";
+import Testimonials from "@/components/sections/FoundationTestimonials";
+import NewsletterSub from "@/components/sections/NewsletterSub";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -9,12 +18,16 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
+      <Navbar />
+      <div className="-mt-16">
+      {/* Hero section */}
       <Hero
         heroImage="/flat-lay-paper-hand-holding-heart-with-copy-space.jpeg"
         heroText="Be a life saver for someone"
         showButtons={true}
         topic="Home"
-      />
+        />
+      </div>
       <MaxWidthWrapper className="-translate-y-1/2 hidden md:block text-white">
         <div className="flex items-center gap-0 h-64 lg:mx-28 md:mx-0">
           <div className="w-1/3 grid place-items-center px-6 bg-green-500 justify-center h-full">
@@ -61,6 +74,43 @@ export default function Home() {
           </div>
         </div>
       </MaxWidthWrapper>
+
+      {/* donner foundation intro */}
+      <AboutDonner />
+
+      {/* Donner foundation top cause to battle */}
+      <Causes />
+      
+      {/* Become a volunteer */}
+      <div className="bg-red-500 w-full h-60 flex flex-col items-center justify-center gap-4">
+        <h1 className="text-4xl text-stone-100 font-black capitalize tracking-tighter leading-tight">
+          Want to join our mission?
+        </h1>
+          <Link href="/volunteer" className={buttonVariants({variant: 'secondary'})}>
+            Click here!
+          </Link>
+      </div>
+      
+      {/* How donner works,  */}
+      <HowitWorks />
+
+      {/* Donner completed projects -- and extras */}
+      <DonnerProjects />
+
+      {/* Verified testimonials for donner foundation */}
+      <Testimonials />
+      
+      {/* Team behind donner foundation */}
+      <FoundationTeam />
+
+      {/* Upcoming Events */}
+      <EventsCalender />
+
+      {/* Subscribe to newlerrer */}
+      <NewsletterSub />
+
+
+
       <Footer />
     </div>
   );

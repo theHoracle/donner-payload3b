@@ -1,8 +1,8 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import payload from "@/payload"
 import { notFound } from "next/navigation"
-import { marked } from 'marked'
 import RichText from "@/components/RichText"
+import ImageSwiper from "@/components/ui/image-swiper"
 
 interface PageProps {
     params: Promise<{
@@ -31,8 +31,7 @@ const CausePage = async ({params}: PageProps) => {
     const validUrls = cause.images?.map(({image}) => 
         (typeof image === 'string' ? 
         image : image.url))
-    .filter(Boolean) as string[]
-
+    .filter(Boolean) as string[];
     
 
     return <div>
@@ -61,7 +60,7 @@ const CausePage = async ({params}: PageProps) => {
              {/* Product images */}
              <div className='mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center'>
                 <div className='aspect-square rounded-lg'>
-                    {/* <ImageSlider urls={validUrls} /> */}
+                    <ImageSwiper urls={validUrls} />
                 </div>
             </div>
 

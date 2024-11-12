@@ -1,6 +1,7 @@
 'use server'
-import payload from "@/payload"
-import { z } from "zod"
+import { setJWTSession } from "@/lib/session";
+import payload from "@/payload";
+import { z } from "zod";
 
 
 
@@ -81,16 +82,17 @@ export async function login({email, password}: FormSchema) {
         throw new Error('Email and password are required');
     }
     try {
-        await payload.login({
+        const { token } = await payload.login({
             collection: 'users',
             data: {
                 email,
                 password
-            } 
+            }  
         })
-        return {
-            success: true
-        }
+        await setJWTSession(token)
+    return {
+        success: true,
+    };
     } catch (error) {
         console.error('Incorrect Email or Password', error)
         throw new Error('Incorrect Email or Password')

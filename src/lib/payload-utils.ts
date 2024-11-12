@@ -5,7 +5,7 @@ import { NextRequest } from "next/server";
 export const getServerSideUser = async (
   cookies: NextRequest["cookies"] | ReadonlyRequestCookies
 ) => {
-  const token = cookies.get("payload-token")?.value;
+  const token = cookies.get("JWTSession")?.value;
   
 
   const meRes = await fetch(

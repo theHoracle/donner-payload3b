@@ -11,7 +11,6 @@ export const Media: CollectionConfig = {
     hidden: ({ user }) => user?.role === "user",
   },
   upload: {
-    staticURL: "/media",
     staticDir: "media",
     imageSizes: [
       {
@@ -33,6 +32,7 @@ export const Media: CollectionConfig = {
         position: "centre",
       },
     ],
+    adminThumbnail: 'thumbnail',
     mimeTypes: ["image/*"],
   },
   fields: [
@@ -45,6 +45,10 @@ export const Media: CollectionConfig = {
       admin: {
         condition: () => false,
       },
+    },
+    {
+      name: 'alt',
+      type: 'text',
     },
   ],
 };

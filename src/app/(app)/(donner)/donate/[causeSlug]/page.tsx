@@ -1,5 +1,4 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
-import payload from "@/payload"
 import { notFound } from "next/navigation"
 import RichText from "@/components/RichText"
 import ImageSwiper from "@/components/ui/image-swiper"
@@ -27,6 +26,8 @@ const CausePage = async ({params}: PageProps) => {
         (typeof image === 'string' ? 
         image : image.url))
     .filter(Boolean) as string[];
+
+    const markedDesc = {__html: cause.description_html || ''}
     
     console.log("Description: ", cause.description_html)
     return <div>
@@ -45,10 +46,9 @@ const CausePage = async ({params}: PageProps) => {
                 <section className='mt-4'>
                     {/*  */}
 
-                    <div className='mt-4 space-y-6'>
-                        <RichText content={cause.description?.richText} />
-                    </div>
-
+                    <div className='mt-4 space-y-6' dangerouslySetInnerHTML={markedDesc} />
+                        {/* <RichText content={cause.description?.richText} /> */}
+                    
                 </section>
             </div>
 

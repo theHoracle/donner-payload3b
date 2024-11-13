@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import escapeHTML from 'escape-html'
-import { Text } from 'slate';
-
+import { Text } from 'slate'
 
 // eslint-disable-next-line no-use-before-define
 type Children = Leaf[]
@@ -18,7 +17,7 @@ type Leaf = {
 }
 
 const serialize = (children: Children): React.ReactNode[] =>
-  children.map((node, i) => {
+  children?.map((node, i) => {
     if (Text.isText(node)) {
       let text = <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
 

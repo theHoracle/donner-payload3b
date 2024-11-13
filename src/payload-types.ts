@@ -149,6 +149,7 @@ export interface Cause {
     };
     [k: string]: unknown;
   };
+  description_html?: string | null;
   target: number;
   raisedAmount: number;
   approved?: ('pending' | 'approved') | null;
@@ -318,6 +319,7 @@ export interface CausesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   description?: T;
+  description_html?: T;
   target?: T;
   raisedAmount?: T;
   approved?: T;

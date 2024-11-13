@@ -8,6 +8,7 @@ const RichText: React.FC<{ className?: string; content: any }> = ({ className, c
   if (!content) {
     return null
   }
+  console.log("conten recieved: ",content)
 
   return (
     <div className={[classes.richText, className].filter(Boolean).join(' ')}>

@@ -2,15 +2,15 @@ import VerifyEmail from "@/components/VerifyEmail";
 import Image from "next/image";
 
 interface PageProps {
-  searchParams: Promise<{
+  params: Promise<{
     [key: string]: string | string[] | undefined;
   }>;
 }
 
-const VerifyEmailPage = async ({ searchParams }: PageProps) => {
-  const params = await searchParams
-  const { token } = params.token
-  const { toEmail } = params.to
+const VerifyEmailPage = async ({ params }: PageProps) => {
+  const searchParams = await params
+  const token = searchParams.token
+  const toEmail = searchParams.to
   
   return (
     <div className="container relative flex pt-20 flex-col items-center lg:px-0">

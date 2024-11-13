@@ -1,6 +1,7 @@
 'use server'
 import { setJWTSession } from "@/lib/session";
 import payload from "@/payload";
+import { cookies } from "next/headers";
 import { z } from "zod";
 
 
@@ -98,3 +99,10 @@ export async function login({email, password}: FormSchema) {
         throw new Error('Incorrect Email or Password')
     }
 }
+
+
+export async function signOut() {
+    // clear session 
+    const c = await cookies();
+    c.getAll().forEach((cookie) => c.delete(cookie.name));
+  }

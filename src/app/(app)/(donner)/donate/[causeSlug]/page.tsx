@@ -3,6 +3,9 @@ import payload from "@/payload"
 import { notFound } from "next/navigation"
 import RichText from "@/components/RichText"
 import ImageSwiper from "@/components/ui/image-swiper"
+import ProgressBar from "@/components/ProgressBar"
+import { getAllCauses, getCause } from "@/lib/queries"
+import CauseReel from "@/components/CauseReel"
 
 interface PageProps {
     params: Promise<{
@@ -12,20 +15,12 @@ interface PageProps {
 
 const CausePage = async ({params}: PageProps) => {
     const causeSlug = (await params).causeSlug
-    const {docs: causes} = await payload.find({
-        collection: 'causes',
-        limit: 1,
-        where: {
-            slug: {
-                equals: causeSlug
-            }, 
-            approved: {
-                equals: 'approved'
-            }
-        },
-    })
-
-    const [cause] = causes
+    const [{docs: allCauses}, {docs: primaryCause}] = await Promise.all([
+        getAllCauses(),
+        getCause(causeSlug)
+    ])
+    const [cause] = primaryCause
+    
     if(!cause) return notFound()
 
     const validUrls = cause.images?.map(({image}) => 
@@ -33,7 +28,7 @@ const CausePage = async ({params}: PageProps) => {
         image : image.url))
     .filter(Boolean) as string[];
     
-
+    console.log("Description: ", cause.description_html)
     return <div>
       <MaxWidthWrapper className='bg-white'>
        <div className='bg-white'>
@@ -51,7 +46,7 @@ const CausePage = async ({params}: PageProps) => {
                     {/*  */}
 
                     <div className='mt-4 space-y-6'>
-                        <RichText content={cause.description} />
+                        <RichText content={cause.description?.richText} />
                     </div>
 
                 </section>
@@ -68,7 +63,7 @@ const CausePage = async ({params}: PageProps) => {
                 <div>
                     <div className='my-6 flex flex-col gap-2 text-muted-foreground text-sm'>
                         <p>Help us get to our goal ❤️</p>
-                        {/* <ProgressBar target={cause.target} raisedAmount={cause.raisedAmount} /> */}
+                        <ProgressBar target={cause.target} raisedAmount={cause.raisedAmount} />
                     </div>
                     <div className='bg-gray-100 px-6 py-4 rounded-lg'>
                        {/* <MakeDonation causeId={cause.id} /> */}
@@ -78,8 +73,8 @@ const CausePage = async ({params}: PageProps) => {
         </div>
     </div>
 
-    {/* <CauseReel /> */}
-</MaxWidthWrapper>
+    <CauseReel causes={allCauses} />
+    </MaxWidthWrapper>
     </div>
 }
 

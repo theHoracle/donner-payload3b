@@ -43,7 +43,7 @@ const Hero = ({ heroImage, heroText, showButtons, topic }: heroProps) => {
                     below poverty line
                   </p>
                   <div className="flex items-center justify-start gap-4 py-4">
-                    <Link href="#" className={cn(buttonVariants(), 'px-6')}>
+                    <Link href="/donate" className={cn(buttonVariants(), 'px-6')}>
                       Donate
                     </Link>
                     <Link

@@ -2,6 +2,7 @@ import AuthForm from "@/components/AuthForm"
 import { login } from "../action";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const Page = () => {
     return <div className="flex h-screen w-full items-center justify-center px-4">
@@ -14,7 +15,9 @@ const Page = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-            <AuthForm onSubmitHandler={login} />
+            <Suspense fallback={<div>Loading...</div>}>
+                    <AuthForm onSubmitHandler={login} />
+            </Suspense>
             </CardContent>
             <CardFooter className="flex flex-col items-center">
                 <p className="text-sm text-muted-foreground">

@@ -11,11 +11,14 @@ import FoundationTeam from "@/components/sections/FoundationTeam";
 import Testimonials from "@/components/sections/FoundationTestimonials";
 import NewsletterSub from "@/components/sections/NewsletterSub";
 import { buttonVariants } from "@/components/ui/button";
+import { getAllCauses } from "@/lib/queries";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const {docs: causes} = await getAllCauses()
+
   return (
     <div>
       <Navbar />
@@ -79,7 +82,7 @@ export default function Home() {
       <AboutDonner />
 
       {/* Donner foundation top cause to battle */}
-      <Causes />
+      <Causes causes={causes} />
       
       {/* Become a volunteer */}
       <div className="bg-red-500 w-full h-60 flex flex-col items-center justify-center gap-4">

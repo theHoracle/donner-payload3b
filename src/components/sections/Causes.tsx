@@ -4,10 +4,9 @@ import Paragraph from "../ui/paragraph"
 import { buttonVariants } from "../ui/button"
 import { cn } from "@/lib/utils"
 import CauseReel from "../CauseReel"
-import { getAllCauses } from "@/lib/queries"
+import { Cause } from "@/payload-types"
 
-const Causes = async () => {
-const {docs: causes} = await getAllCauses()
+const Causes = ({causes}: {causes: Cause[]}) => {
  return <section className="bg-blue-100">
  <MaxWidthWrapper>
    <div className="py-20">

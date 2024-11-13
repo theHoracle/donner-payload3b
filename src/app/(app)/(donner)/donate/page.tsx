@@ -14,7 +14,7 @@ const parse = (param: Param) => {
 };
 const Causes = async (props: CausesPageProps) => {
   const searchParams = await props.searchParams;
-  const sort = parse(searchParams.sort);
+  // const sort = parse(searchParams.sort);
 
   const {docs: cause} = await getAllCauses()
 

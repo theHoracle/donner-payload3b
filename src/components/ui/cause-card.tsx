@@ -1,8 +1,6 @@
-"use client";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Cause } from "@/payload-types";
-import { useEffect, useState } from "react";
 import ImageSwiper from "./image-swiper";
 import { buttonVariants } from "./button";
 import ProgressBar from "../ProgressBar";

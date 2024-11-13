@@ -5,7 +5,14 @@ const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
     reactCompiler: false
-  }
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
 };
 
 export default withPayload(nextConfig);

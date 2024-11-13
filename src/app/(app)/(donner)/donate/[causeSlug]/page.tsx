@@ -1,10 +1,11 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import { notFound } from "next/navigation"
-import RichText from "@/components/RichText"
+
 import ImageSwiper from "@/components/ui/image-swiper"
 import ProgressBar from "@/components/ProgressBar"
 import { getAllCauses, getCause } from "@/lib/queries"
 import CauseReel from "@/components/CauseReel"
+import RichText from "@/components/Block/RichText"
 
 interface PageProps {
     params: Promise<{
@@ -27,9 +28,7 @@ const CausePage = async ({params}: PageProps) => {
         image : image.url))
     .filter(Boolean) as string[];
 
-    const markedDesc = {__html: cause.description_html || ''}
-    
-    console.log("Description: ", cause.description_html)
+
     return <div>
       <MaxWidthWrapper className='bg-white'>
        <div className='bg-white'>
@@ -46,8 +45,8 @@ const CausePage = async ({params}: PageProps) => {
                 <section className='mt-4'>
                     {/*  */}
 
-                    <div className='mt-4 space-y-6' dangerouslySetInnerHTML={markedDesc} />
-                        {/* <RichText content={cause.description?.richText} /> */}
+                    {/* <div className='mt-4 space-y-6' dangerouslySetInnerHTML={markedDesc} /> */}
+                    <RichText content={cause.description} />
                     
                 </section>
             </div>

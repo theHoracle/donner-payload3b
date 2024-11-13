@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input"
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { toast } from 'sonner'
+import { Loader2 } from 'lucide-react'
 
 interface AuthFormProps {
     onSubmitHandler: (values: z.infer<typeof formSchema>) => Promise<{
@@ -58,8 +59,8 @@ const AuthForm = ({ onSubmitHandler }: AuthFormProps) => {
               // to origin or to home
               router.push(originUrl ||'/')
             }
-        } catch (error: any) {
-            
+        } catch (error) {
+            toast.error(error?.message || 'An error occurred! Try again later')
         } finally {
             setIsLoading(false)
         }
@@ -100,8 +101,9 @@ const AuthForm = ({ onSubmitHandler }: AuthFormProps) => {
               </FormItem>
             )}
           />
-          <Button className="w-full" type="submit">
+          <Button disabled={isLoading} className="w-full flex gap-1" type="submit">
             Submit
+            {isLoading && <Loader2 className='animate-spin' />}
           </Button>
         </form>
       </Form>  

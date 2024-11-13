@@ -15,7 +15,7 @@ export const Users: CollectionConfig = {
   slug: "users",
   auth: {
     verify: {
-      generateEmailHTML: ({ req, token, user }) => {
+      generateEmailHTML: ({ token, user }) => {
         // Use the token provided to allow your user to verify their account
         const url = `${process.env.NEXT_PUBLIC_APP_URL}?token=${token}`
 

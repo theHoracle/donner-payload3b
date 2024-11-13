@@ -1,4 +1,4 @@
-import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from "@payloadcms/richtext-lexical";
+import { HTMLConverterFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { CollectionConfig } from "payload";
 
 // Make a unique slug from the title string
@@ -58,7 +58,8 @@ export const Causes: CollectionConfig = {
         ],
       }),
     },
-    lexicalHTML('description', { name: 'description_html' }),
+    // useeful to parse description into html after creating new cause
+    // lexicalHTML('description', { name: 'description_html' }),
     {
       name: "target",
       label: "Target in Naira",

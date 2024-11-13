@@ -41,7 +41,7 @@ export default async function Home() {
                 change
               </p>
               <Link
-                href="/#"
+                href="/donate"
                 className={cn(buttonVariants(), "bg-white text-green-500")}
               >
                 Donate

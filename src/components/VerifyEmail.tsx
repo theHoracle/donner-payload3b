@@ -13,9 +13,7 @@ interface VerifyEmailProps {
 }
 
 const VerifyEmail = ({ token }: VerifyEmailProps) => {
-//   const { data, isLoading, isError } = trpc.auth.verifyEmail.useQuery({
-//     token,
-//   });
+
 const [isLoading, setIsLoading] = useState(true)
 const [isError, setIsError] = useState(false)
 
@@ -27,7 +25,7 @@ useEffect(() => {
         }
     }
     verify().finally(() => setIsLoading(false))
-}, [])
+}, [token])
 
 
   if (isError) {

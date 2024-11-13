@@ -2,10 +2,7 @@
 import { setJWTSession } from "@/lib/session";
 import payload from "@/payload";
 import { cookies } from "next/headers";
-import { z } from "zod";
-
-
-
+import { z, ZodError } from "zod";
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -15,6 +12,15 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>
 
 export async function signup({email, password}: FormSchema) {
+    try {
+        formSchema.parse({email, password})
+    } catch (error) {
+        if(error instanceof ZodError) {
+            return {
+                success: false, message: error.message
+            }
+        }
+    }    
     if(!email || !password) {
         console.error('Email and password are required', email, password)
         return {

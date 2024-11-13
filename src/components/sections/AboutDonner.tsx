@@ -56,7 +56,7 @@ const AboutDonner = () => {
           <div className="grid w-full grid-cols-2 grid-rows-3 gap-x-4 gap-y-2 mb-4">
             {goals.map((goal, index) => {
               return (
-                <div key={goal} className="flex items-center gap-2">
+                <div key={index} className="flex items-center gap-2">
                   <Check className="bg-green-500 h-5 w-5 p-1 rounded-full" />
                   <p className="capitalize ">{goal}</p>
                 </div>

@@ -1,11 +1,11 @@
 // storage-adapter-import-placeholder
+// import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { resendAdapter } from '@payloadcms/email-resend'
 
 import { Users } from './collections/Users'
@@ -42,7 +42,7 @@ export default buildConfig({
   //     },
   //   },
   // }),
-  editor: lexicalEditor(),
+  editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -50,8 +50,11 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  sharp,
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
+  cors: [process.env.NEXT_PUBLIC_SERVER_URL!],
+  csrf: [process.env.NEXT_PUBLIC_SERVER_URL!],
   plugins: [
     // storage-adapter-placeholder
   ],
+  sharp,
 })

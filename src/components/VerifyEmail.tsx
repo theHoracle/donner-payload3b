@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import { useEffect, useState } from "react";
-import { verifyEmail } from "@/app/(app)/auth/action";
+import { verifyEmail } from "@/app/(frontend)/auth/action";
 
 interface VerifyEmailProps {
   token: string;

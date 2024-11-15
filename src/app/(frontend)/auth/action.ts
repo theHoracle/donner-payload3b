@@ -1,6 +1,6 @@
 'use server'
 import { setJWTSession } from "@/lib/session";
-import payload from "@/payload";
+import getPayload from "@/payload";
 import { cookies } from "next/headers";
 import { z, ZodError } from "zod";
 
@@ -28,6 +28,7 @@ export async function signup({email, password}: FormSchema) {
             message: 'Email and password are required'
         }
     } 
+    const payload = await getPayload()
     // check if user exists
     const {docs: users} = await payload.find({
         collection: 'users',
@@ -67,6 +68,7 @@ export async function verifyEmail(token: string) {
             message: 'Token is required'
         }
     }
+    const payload = await getPayload()
     const isVerified = await payload.verifyEmail({
         collection: 'users',
         token,
@@ -89,6 +91,7 @@ export async function login({email, password}: FormSchema) {
         throw new Error('Email and password are required');
     }
     try {
+        const payload = await getPayload()
         const { token } = await payload.login({
             collection: 'users',
             data: {

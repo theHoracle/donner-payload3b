@@ -1,9 +1,11 @@
-import payload from "@/payload";
+import getPayload from "@/payload";
 import { unstable_cache } from "./unstable-cache";
 
 // from nextjs 15.0.4, use the "use cache" directive instead
 export const getAllCauses = unstable_cache(
-    () => payload.find({
+   async () => {
+        const payload = await getPayload()
+        return payload.find({
             collection: 'causes',
             depth: 2,
             page: 1,
@@ -13,7 +15,8 @@ export const getAllCauses = unstable_cache(
                     equals: 'approved'
                 }
             }
-        }),
+        })
+    },
     ["causes"],
     {
         revalidate: 60 * 60 * 2, // two hours,
@@ -21,7 +24,9 @@ export const getAllCauses = unstable_cache(
 )
 
 export const getCause = unstable_cache(
-    (slug: string) => payload.find({
+   async (slug: string) => {
+        const payload = await getPayload()
+        return payload.find({
         collection: 'causes',
         depth: 2,
         where: {
@@ -32,7 +37,7 @@ export const getCause = unstable_cache(
                 equals: 'approved'
             }
         }
-    }),
+    })},
     ["causes", "slug"],
     {
         revalidate: 60 * 60 * 2, // two hours,

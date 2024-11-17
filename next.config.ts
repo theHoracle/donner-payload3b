@@ -13,6 +13,19 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'https',
+        hostname: 'vercel',
+      },
+    ],
+  },
+
 };
 
 export default withPayload(nextConfig);

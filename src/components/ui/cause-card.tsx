@@ -22,7 +22,7 @@ const CauseCard = ({ cause }: CauseCardProps) => {
       <div className="bg-gray-100 rounded-xl">
         <div className="flex flex-col w-full">
           {/* <ImageSwiper urls={validImageUrls} /> */}
-          <div className="aspect-square overflow-hidden rounded-xl">
+          <div className="relative aspect-square overflow-hidden rounded-t-xl">
             <Image 
             alt={cause.slug}
             src={validImageUrls[0]}

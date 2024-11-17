@@ -1,5 +1,12 @@
 import type { Endpoint } from 'payload'
-import {createHmac} from 'crypto'
+import { PaystackWebhookEvent } from './paystack-types';
+// import {createHmac} from 'crypto'
+
+enum PaystackIPs {
+    '52.31.139.75',
+    '52.49.173.169',
+    '52.214.14.220',
+}
 
 const PaystackWebhook: Endpoint = {
     path: '/webhooks/paystack',
@@ -8,21 +15,19 @@ const PaystackWebhook: Endpoint = {
       try {
         // @ts-expect-error tye
         const body = await req.text()
-
-        console.log("REquest: ", req, '\n', 'Body: ', body )
-        const SECRET = process.env.PAYSTACK_SECRET_KEY!
-        const hash = createHmac('sha512', SECRET).update(JSON.stringify(body.toString())).digest('hex');
-        const signature = req.headers.get('x-paystack-signature');
-        console.log('Signature: ',signature, '\n', 'hash: ', hash)
-        if (!signature || hash !== signature) {
+        // const SECRET = process.env.PAYSTACK_SECRET_KEY!
+        // const hash = createHmac('sha512', SECRET).update(JSON.stringify(body.toString())).digest('hex');
+        // const signature = req.headers.get('x-paystack-signature');
+        const ip = req.headers.get('x-forwarded-for')
+        // if (!signature || hash !== signature) {
+        if (!ip || !Object.values(PaystackIPs).includes(ip)) {
             return Response.json(
-                { error: 'Invalid or missing Paystack signature' },
+                { error: 'Forbidden IP address, hehehe' },
                 { status: 401 }
             );
         }
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const event = body as unknown as any
-            const session = event?.data
+        const event = body as unknown as PaystackWebhookEvent
+        const session = event?.data
         if(!session.metadata.userId || !session.metadata.donationId) {
             return Response.json({
                 error: 'Webhook Error: No information present in Metadata'

@@ -1,5 +1,10 @@
 import VerifyEmail from "@/components/VerifyEmail";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Verify Email",
+};
 
 interface PageProps {
   params: Promise<{

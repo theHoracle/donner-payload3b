@@ -14,7 +14,7 @@ const Testimonials = () => {
             </h2>
           </div>
           <div className="w-full">
-            <div className="grid md:grid-cols-2 md:grid-rows-2 lg:grid-cols-3 py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 lg:grid-cols-3 py-10 md:py-16">
               <TestimonialCard />
             </div>
           </div>

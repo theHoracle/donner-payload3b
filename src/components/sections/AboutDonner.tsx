@@ -53,7 +53,7 @@ const AboutDonner = () => {
           </div>
         </div>
         <div className="md:w-2/5  bg-zinc-100 px-10 py-12 rounded-lg grid place-items-center">
-          <div className="grid w-full grid-cols-2 grid-rows-3 gap-x-4 gap-y-2 mb-4">
+          <div className="grid w-full grid-cols-1 grid-rows-6 md:grid-cols-2 md:grid-rows-3 gap-x-4 gap-y-2 mb-4">
             {goals.map((goal, index) => {
               return (
                 <div key={index} className="flex items-center gap-2">

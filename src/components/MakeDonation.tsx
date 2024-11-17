@@ -84,7 +84,7 @@ const MakeDonation = ({ causeId, user }: MakeDonationProps) => {
         Donate 
             {isLoading && <Loader2 className="h-5 w-5 ml-1 animate-spin" />} 
             </Button>) : (
-                <div className="flex flex-col max-w-80 gap-2">
+                <div className="flex flex-col min-w-[50%] max-w-80 gap-2 mx-auto">
                 <Link href='/auth/login' className={buttonVariants()}>Login to donate</Link>
                 <Button variant='link'>
                     Make anon donation 

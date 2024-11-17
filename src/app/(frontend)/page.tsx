@@ -49,14 +49,14 @@ export default async function Home() {
             </div>
           </div>
           <div className="w-1/3 bg-primary justify-center bg-red-500 grid place-items-center px-6 h-full">
-            <div className="flex flex-col gap-4 ">
+            <div className="flex flex-col item-center justify-center gap-4 ">
               <h3 className="font-semibold text-lg">Become a volunteer</h3>
               <p>
                 Our foundation welcomes any one with a good heart who volunteers
                 to help with our work
               </p>
               <Link
-                href="#volunteer"
+                href="/volunteer"
                 className={cn(
                   "text-white",
                   buttonVariants({ variant: "link" }),
@@ -86,7 +86,7 @@ export default async function Home() {
       
       {/* Become a volunteer */}
       <div className="bg-red-500 w-full h-60 flex flex-col items-center justify-center gap-4">
-        <h1 className="text-4xl text-stone-100 font-black capitalize tracking-tighter leading-tight">
+        <h1 className="text-4xl text-stone-100 text-center font-black capitalize tracking-tighter leading-tight">
           Want to join our mission?
         </h1>
           <Link href="/volunteer" className={buttonVariants({variant: 'secondary'})}>

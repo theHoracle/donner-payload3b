@@ -6,7 +6,11 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Thank You",
+};
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
@@ -100,11 +104,6 @@ const Page = async (props: PageProps) => {
                 <PaymentStatus
                   isPaid={donation._isPaid}
                   donationId={donation.id}
-                  donationEmail={
-                    typeof donation.user !== "string"
-                      ? donation.user.email
-                      : "N/A"
-                  }
                 />
               </div>
             </div>

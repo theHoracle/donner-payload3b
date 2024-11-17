@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils"
 const DonnerProjects = () => {
     return (
         <section>
-        <div className="grid grid-cols-4 grid-rows-2 py-20 w-screen">
-          <div className="col-span-2 max-h-  bg-green-200 p-4 md:p-12 ">
+        <div className="grid md:grid-cols-4 md:grid-rows-2 py-20 w-screen">
+          <div className="size-full md:col-span-2 bg-green-200 p-4 md:p-12 ">
             <div className="flex flex-col items-start">
               <Paragraph variant="topic">what we did</Paragraph>
               <h2 className="capitalize text-2xl font-semibold tracking-tight leading-tight">
@@ -19,7 +19,7 @@ const DonnerProjects = () => {
                 inventore eveniet?
               </Paragraph>
               <Link
-                href="#"
+                href="/projects"
                 className={cn(
                   buttonVariants({ variant: "secondary" }),
                   "text-sm mt-3"
@@ -29,12 +29,12 @@ const DonnerProjects = () => {
               </Link>
             </div>
           </div>
-          <div className="col-span-1 bg-red-200 "></div>
-          <div className="col-span-1 bg-blue-200 "></div>
-          <div className="col-span-1 bg-zinc-200 "></div>
-          <div className="col-span-1 bg-rose-400 "></div>
-          <div className="col-span-1 bg-purple-200 "></div>
-          <div className="col-span-1 bg-lime-800 "></div>
+          <div className="col-span-1 hidden md:flex bg-red-200 "></div>
+          <div className="col-span-1 hidden md:flex bg-blue-200 "></div>
+          <div className="col-span-1 hidden md:flex bg-zinc-200 "></div>
+          <div className="col-span-1 hidden md:flex bg-rose-400 "></div>
+          <div className="col-span-1 hidden md:flex bg-purple-200 "></div>
+          <div className="col-span-1 hidden md:flex bg-lime-800 "></div>
         </div>
       </section>
     )

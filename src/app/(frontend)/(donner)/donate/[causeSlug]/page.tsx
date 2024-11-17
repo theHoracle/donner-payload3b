@@ -9,6 +9,11 @@ import RichText from "@/components/Block/RichText"
 import { cookies } from "next/headers"
 import { getServerSideUser } from "@/lib/payload-utils"
 import MakeDonation from "@/components/MakeDonation"
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Make Donation",
+};
 
 interface PageProps {
     params: Promise<{

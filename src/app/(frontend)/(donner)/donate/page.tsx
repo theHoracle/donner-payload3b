@@ -2,6 +2,11 @@ import CauseReel from "@/components/CauseReel";
 import Hero from "@/components/Hero";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { getAllCauses } from "@/lib/queries";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Donate",
+};
 
 // type Param = string | string[] | undefined;
 // interface CausesPageProps {

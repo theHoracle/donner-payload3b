@@ -65,9 +65,10 @@ export const createPaymentSession = async ({causeId, unitAmount, user}: CreatePa
                 donationId: donation.id
             }
         })
+        console.log(paystackSession)
         return {
             success: true,
-            sessionUrl: paystackSession.data.authorization_url
+            sessionUrl: paystackSession.data?.authorization_url
         }
     } catch (error) {
         return {

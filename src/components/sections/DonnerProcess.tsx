@@ -12,12 +12,12 @@ export const HowitWorks = () => {
               We do for people in need
             </h2>
           </div>
-          <div className="grid grid-cols-2 grid-rows-3 gap-x-6 gap-y-12 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8 lg:gap-y-0">
+          <div className="flex items-center overflow-x-scroll md:grid md:grid-cols-2 md:grid-rows-3 gap-x-6 gap-y-12 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8 lg:gap-y-0">
             {howItWorks.map((item, index) => {
               return (
                 <div
                   key={index}
-                  className="flex items-start text-left lg:block lg:text-center py-10"
+                  className={`flex items-start text-left lg:block lg:text-center py-10 min-w-52`}
                 >
                   <div>
                     <div className="md:flex-shrink-0 flex lg:justify-center">

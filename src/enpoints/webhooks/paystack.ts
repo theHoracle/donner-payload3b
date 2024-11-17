@@ -21,7 +21,7 @@ const PaystackWebhook: Endpoint = {
         const ip = req.headers.get('x-forwarded-for')
         // if (!signature || hash !== signature) {
         console.log('ip: ', ip, 'status: ', PAYSTACK_IPS.includes(ip!))
-        if (!ip || !PAYSTACK_IPS.includes(ip)) {
+        if(!ip || !(PAYSTACK_IPS.includes(ip))) {
             return Response.json(
                 { error: 'Forbidden IP address, hehehe' },
                 { status: 401 }

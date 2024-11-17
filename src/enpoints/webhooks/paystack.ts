@@ -5,13 +5,17 @@ const PaystackWebhook: Endpoint = {
     path: '/webhooks/paystack',
     method: 'post',
     handler: async ( req ) => {
-        
+      try {
         const body = req.body
         const SECRET = process.env.PAYSTACK_SECRET_KEY!
-        const hash = createHmac('sha512', SECRET).update(JSON.stringify(body)).digest('hex')
-        
+        const hash = createHmac('sha512', SECRET).update(JSON.stringify(body)).digest('hex');
         const signature = req.headers.get('x-paystack-signature')
-        if(hash == signature) {
+        if (!signature || hash !== signature) {
+            return Response.json(
+                { error: 'Invalid or missing Paystack signature' },
+                { status: 401 }
+            );
+        }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const event = body as unknown as any
             const session = event?.data
@@ -22,7 +26,6 @@ const PaystackWebhook: Endpoint = {
         }
         if(event.event == 'charge.success') {
             const { payload } = req
-    
             const {docs: users} = await payload.find({
                 collection: 'users',
                 where: {
@@ -54,7 +57,9 @@ const PaystackWebhook: Endpoint = {
             }
             
             // Get cause id
-            const causeId = donation.donationCause
+            const causeId = typeof donation.donationCause === 'string' ? 
+                                donation.donationCause : 
+                                donation.donationCause.id
             // find the cause to get the current raisedAmount
             const {docs: causes} = await payload.find({
                 collection: 'causes',
@@ -74,11 +79,7 @@ const PaystackWebhook: Endpoint = {
             // Update donation info to verify payment on server
             await payload.update({
                 collection: 'donations',
-                where: {
-                    id: {
-                        equals: donation.id
-                    }
-                },
+                id: donation.id,
                 data: {
                     _isPaid: true
                 }
@@ -87,18 +88,20 @@ const PaystackWebhook: Endpoint = {
             // update cause recieved amount to display to users
             await payload.update({
                 collection: 'causes', 
-                where: {
-                    id: {
-                        equals: cause
-                    }
-                },
+                id: causeId,
                 data: {
                     raisedAmount: cause.raisedAmount + donation.amount
                 }
             })   
+            return Response.json({message: 'Updated Successfully'}, {status: 200})
         }
+        return Response.json({message: 'No relevant event found'}, {status: 400})
+    } catch (error) {
+        return Response.json(
+            { error: 'Internal Server Error: ' + error  },
+            { status: 401 }
+        );
     }
-    return Response.json({message: 'Updated Successfully'}, {status: 200})
     
     }
 

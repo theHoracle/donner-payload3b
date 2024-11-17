@@ -6,6 +6,7 @@ const PaystackWebhook: Endpoint = {
     method: 'post',
     handler: async ( req ) => {
       try {
+        console.log("REquest: ", req, '\n', 'REquestBody: ', req.body)
         const body = req.body
         const SECRET = process.env.PAYSTACK_SECRET_KEY!
         const hash = createHmac('sha512', SECRET).update(JSON.stringify(body)).digest('hex');

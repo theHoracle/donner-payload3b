@@ -2,11 +2,11 @@ import type { Endpoint } from 'payload'
 import { PaystackWebhookEvent } from './paystack-types';
 // import {createHmac} from 'crypto'
 
-enum PaystackIPs {
+const PAYSTACK_IPS: string[] = [
     '52.31.139.75',
     '52.49.173.169',
-    '52.214.14.220',
-}
+    '52.214.14.220'
+] as const;
 
 const PaystackWebhook: Endpoint = {
     path: '/webhooks/paystack',
@@ -20,7 +20,7 @@ const PaystackWebhook: Endpoint = {
         // const signature = req.headers.get('x-paystack-signature');
         const ip = req.headers.get('x-forwarded-for')
         // if (!signature || hash !== signature) {
-        if (!ip || !Object.values(PaystackIPs).includes(ip)) {
+        if (!ip || !PAYSTACK_IPS.includes(ip)) {
             return Response.json(
                 { error: 'Forbidden IP address, hehehe' },
                 { status: 401 }

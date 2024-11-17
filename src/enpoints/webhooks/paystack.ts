@@ -11,6 +11,7 @@ const PaystackWebhook: Endpoint = {
         const hash = createHmac('sha512', SECRET).update(JSON.stringify(body)).digest('hex');
         // @ts-expect-error paystack says do this bro
         const signature = req.headers['x-paystack-signature']
+        console.log('Signature: ',signature, '\n', 'hash: ', hash)
         if (!signature || hash !== signature) {
             return Response.json(
                 { error: 'Invalid or missing Paystack signature' },

@@ -9,9 +9,9 @@ const PaystackWebhook: Endpoint = {
         // @ts-expect-error tye
         const body = await req.text()
 
-        console.log("REquest: ", req, '\n', 'REquestBody: ', req.body, '\n', 'Body: ', body )
+        console.log("REquest: ", req, '\n', 'Body: ', body )
         const SECRET = process.env.PAYSTACK_SECRET_KEY!
-        const hash = createHmac('sha512', SECRET).update(JSON.stringify(body)).digest('hex');
+        const hash = createHmac('sha512', SECRET).update(JSON.stringify(body.toString())).digest('hex');
         const signature = req.headers.get('x-paystack-signature');
         console.log('Signature: ',signature, '\n', 'hash: ', hash)
         if (!signature || hash !== signature) {

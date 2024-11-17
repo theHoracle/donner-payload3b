@@ -9,8 +9,7 @@ const PaystackWebhook: Endpoint = {
         const body = req.body
         const SECRET = process.env.PAYSTACK_SECRET_KEY!
         const hash = createHmac('sha512', SECRET).update(JSON.stringify(body)).digest('hex');
-        // @ts-expect-error paystack says do this bro
-        const signature = req.headers['x-paystack-signature']
+        const signature = req.headers.get('x-paystack-signature');
         console.log('Signature: ',signature, '\n', 'hash: ', hash)
         if (!signature || hash !== signature) {
             return Response.json(

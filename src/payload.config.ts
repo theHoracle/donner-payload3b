@@ -12,6 +12,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Causes } from './collections/Causes/Causes'
 import { Donations } from './collections/Donations';
+import PaystackWebhook from './enpoints/webhooks/paystack'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -50,6 +51,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
+  endpoints: [ PaystackWebhook ],
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
   cors: [process.env.NEXT_PUBLIC_SERVER_URL!],
   csrf: [process.env.NEXT_PUBLIC_SERVER_URL!],

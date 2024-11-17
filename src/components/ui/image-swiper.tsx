@@ -94,7 +94,7 @@ const ImageSwiper = ({ urls }: ImageSwiperProps) => {
               loading='eager'
               className='-z-10 h-full w-full object-cover object-center'
               src={url}
-              alt='Product image'
+              alt='Cause image'
             />
           </SwiperSlide>
         ))}

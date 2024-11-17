@@ -5,7 +5,7 @@
 DATABASE_URI=mongodb uri
 PAYLOAD_SECRET= hexcode
 RESEND_API_KEY= for email
-NEXT_PUBLIC_APP_URL= app url
+NEXT_PUBLIC_SERVER_URL= app url
 ```
 
 * To run:

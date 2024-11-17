@@ -17,7 +17,7 @@ export const Users: CollectionConfig = {
     verify: {
       generateEmailHTML: ({ token, user }) => {
         // Use the token provided to allow your user to verify their account
-        const url = `${process.env.NEXT_PUBLIC_APP_URL}?token=${token}`
+        const url = `${process.env.NEXT_PUBLIC_SERVER_URL}?token=${token}`
 
         return `Hey ${user.email}, verify your email by clicking here: ${url}`
       },

@@ -6,7 +6,7 @@ export async function getJWTSession() {
   return session;
 }
 
-export async function setJWTSession(token: any) {
+export async function setJWTSession(token: string) {
   const expiresInOneDay = new Date(Date.now() + 24 * 60 * 60 * 1000);
   (await cookies()).set("JWTSession", token, {
     expires: expiresInOneDay,

@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Cause } from "@/payload-types";
-import ImageSwiper from "./image-swiper";
 import { buttonVariants } from "./button";
 import ProgressBar from "../ProgressBar";
+import Image from "next/image";
 
 
 interface CauseCardProps {
   cause: Cause | null;
   index: number;
 }
-const CauseCard = ({ cause, index }: CauseCardProps) => {
+const CauseCard = ({ cause }: CauseCardProps) => {
   const validImageUrls = cause?.images
-    ?.map(({ image }) => (typeof image === "string" ? image : image.url))
+    ?.map(({ image }) => (typeof image === "string" ? image : image.thumbnailURL))
     .filter(Boolean) as string[];
 
   if (!cause) return <CausePlaceholder />;
@@ -21,7 +21,15 @@ const CauseCard = ({ cause, index }: CauseCardProps) => {
     return (
       <div className="bg-gray-100 rounded-xl">
         <div className="flex flex-col w-full">
-          <ImageSwiper urls={validImageUrls} />
+          {/* <ImageSwiper urls={validImageUrls} /> */}
+          <div className="aspect-square overflow-hidden rounded-xl">
+            <Image 
+            alt={cause.slug}
+            src={validImageUrls[0]}
+            className="object-cover object-center"
+            fill
+            />
+          </div>
           <div className="px-3 py-2.5 flex flex-col gap-3">
             <h3 className="font-medium text-sm">{cause.title}</h3>
             <ProgressBar raisedAmount={cause.raisedAmount} target={cause.target} />

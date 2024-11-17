@@ -99,10 +99,13 @@ export async function login({email, password}: FormSchema) {
                 password
             }  
         })
-        await setJWTSession(token)
-    return {
-        success: true,
-    };
+        if(token) {
+            await setJWTSession(token)
+            return {
+                success: true,
+            };
+        }
+        return {success: false}
     } catch (error) {
         console.error('Incorrect Email or Password', error)
         throw new Error('Incorrect Email or Password')

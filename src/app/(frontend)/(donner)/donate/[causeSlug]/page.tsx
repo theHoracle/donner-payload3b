@@ -6,6 +6,9 @@ import ProgressBar from "@/components/ProgressBar"
 import { getAllCauses, getCause } from "@/lib/queries"
 import CauseReel from "@/components/CauseReel"
 import RichText from "@/components/Block/RichText"
+import { cookies } from "next/headers"
+import { getServerSideUser } from "@/lib/payload-utils"
+import MakeDonation from "@/components/MakeDonation"
 
 interface PageProps {
     params: Promise<{
@@ -20,6 +23,9 @@ const CausePage = async ({params}: PageProps) => {
         getCause(causeSlug)
     ])
     const [cause] = primaryCause
+
+    const authCookie = await cookies()
+    const { user } = await getServerSideUser(authCookie)
     
     if(!cause) return notFound()
 
@@ -65,7 +71,7 @@ const CausePage = async ({params}: PageProps) => {
                         <ProgressBar target={cause.target} raisedAmount={cause.raisedAmount} />
                     </div>
                     <div className='bg-gray-100 px-6 py-4 rounded-lg'>
-                       {/* <MakeDonation causeId={cause.id} /> */}
+                       <MakeDonation causeId={cause.id} user={user} />
                     </div>
                 </div>
             </div>

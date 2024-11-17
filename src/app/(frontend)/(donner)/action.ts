@@ -85,13 +85,13 @@ export const pollPaymentStatus = async({donationId}: {donationId: string}): Prom
         collection: 'donations',
         id: donationId
     })
-    const {status} = await paystack.transaction.verify(donationId)
+    // const {status} = await paystack.transaction.verify(donationId)
     if(!donation) {
         return {
             isPaid: false
         }
     }
-    if(donation._isPaid || status) {
+    if(donation._isPaid ) {
         return {
             isPaid: true
         }

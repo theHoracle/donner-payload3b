@@ -5,15 +5,16 @@ const PaystackWebhook: Endpoint = {
     path: '/webhooks/paystack',
     method: 'post',
     handler: async ( req ) => {
-        // @ts-expect-error req is possibly undefined
-        const body = await req.json()
+        
+        const body = req.body
         const SECRET = process.env.PAYSTACK_SECRET_KEY!
         const hash = createHmac('sha512', SECRET).update(JSON.stringify(body)).digest('hex')
         
         const signature = req.headers.get('x-paystack-signature')
         if(hash == signature) {
-            const event = body
-            const session = event.data
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const event = body as unknown as any
+            const session = event?.data
         if(!session.metadata.userId || !session.metadata.donationId) {
             return Response.json({
                 error: 'Webhook Error: No information present in Metadata'

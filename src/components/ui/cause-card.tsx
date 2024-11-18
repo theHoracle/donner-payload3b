@@ -16,10 +16,8 @@ const CauseCard = ({ cause }: CauseCardProps) => {
     .filter(Boolean) as string[];
 
   if (!cause) return <CausePlaceholder />;
-
-  if (cause) {
-    return (
-      <div className="bg-gray-100 rounded-xl">
+  return (
+      <div className="bg-gray-100 rounded-xl min-w-72">
         <div className="flex flex-col w-full">
           {/* <ImageSwiper urls={validImageUrls} /> */}
           <div className="relative aspect-square overflow-hidden rounded-t-xl">
@@ -40,8 +38,7 @@ const CauseCard = ({ cause }: CauseCardProps) => {
         </div>
       </div>
     );
-  }
-};
+  };
 
 const CausePlaceholder = () => {
   return (

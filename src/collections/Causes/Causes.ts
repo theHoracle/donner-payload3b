@@ -77,8 +77,8 @@ export const Causes: CollectionConfig = {
       },
       access: {
         create: () => false,
-        read: () => false,
         update: () => false,
+        read: () => true,
       },
     },
     {

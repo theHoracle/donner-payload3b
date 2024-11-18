@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MobileMenu from "@/components/Nav/MobileMenu";
 import Navbar from "@/components/Nav/Navbar";
 import AboutDonner from "@/components/sections/AboutDonner";
 import Causes from "@/components/sections/Causes";
@@ -20,16 +21,14 @@ export default async function Home() {
   const {docs: causes} = await getAllCauses()
 
   return (
-    <div>
+    <div className=''>
       <Navbar />
-      <div className="-mt-16">
+      <MobileMenu>
+      <div className="">
+
+      <div className="md:-mt-16">
       {/* Hero section */}
-      <Hero
-        heroImage="/flat-lay-paper-hand-holding-heart-with-copy-space.jpeg"
-        heroText="Be a life saver for someone"
-        showButtons={true}
-        topic="Home"
-        />
+      <Hero />
       </div>
       <MaxWidthWrapper className="-translate-y-1/2 hidden md:block text-white">
         <div className="flex items-center gap-0 h-64 lg:mx-28 md:mx-0">
@@ -115,6 +114,8 @@ export default async function Home() {
 
 
       <Footer />
+      </div>
+    </MobileMenu>
     </div>
   );
 }

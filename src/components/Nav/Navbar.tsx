@@ -5,8 +5,8 @@ import MaxWidthWrapper from "../MaxWidthWrapper"
 import Link from "next/link"
 import { buttonVariants } from "../ui/button"
 import { cn } from "@/lib/utils"
-import NavMenu from "./NavMenu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { NavMenubar } from "./NavMenu"
 
 
 const Navbar = async () => {
@@ -17,7 +17,7 @@ const Navbar = async () => {
 
     return <NavbarScrollHandler>
         <MaxWidthWrapper>
-          <div className="flex items-center h-16 justify-between gap-16">
+          <div className="md:flex hidden items-center h-16 justify-between gap-16">
           <div className="md:ml-4 flex flex-1">
             <Link href="/">
             <span
@@ -26,14 +26,14 @@ const Navbar = async () => {
             </Link>
           </div>
           <div className="flex-[2]">
-            <NavMenu />
+            <NavMenubar />
           </div>
             {/* sign in / up */}
             <div className="hidden md:flex md:justify-end md:items-center flex-1">
             {!user ? (
               <Link
                   href="auth/login"
-                  className={cn(buttonVariants({ variant: 'secondary'}), 'px-8 font-medium')}
+                  className={cn(buttonVariants({ variant: 'ghost'}), 'px-8 font-medium')}
                 >
                 Login
                 </Link>
@@ -47,7 +47,6 @@ const Navbar = async () => {
                 </div>
             )}
              </div>
-             {/* mobile menu */}
         </div>
     </MaxWidthWrapper>
 </NavbarScrollHandler>

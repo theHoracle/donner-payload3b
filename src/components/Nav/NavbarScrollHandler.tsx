@@ -1,5 +1,6 @@
 'use client';
 
+import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { ReactNode, useEffect, useState } from 'react';
 
@@ -10,6 +11,7 @@ const NavbarScrollHandler = ({ children }: NavbarScrollHandlerProps) => {
   const [isScrolledDown, setIsScrolledDown] = useState(false);
   const [screenHeight, setScreenHeight] = useState(0);
   const [scrollY, setScrollY] = useState(0);
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,9 +37,10 @@ const NavbarScrollHandler = ({ children }: NavbarScrollHandlerProps) => {
       setIsScrolledDown(false);
     }
   }, [scrollY, screenHeight]);
+  if(isMobile) return null
   return (
     <div
-      className={`sticky z-50 top-0 inset-x-0 h-16 text-gray-700 ${
+      className={`sticky z-50 md:block top-0 inset-x-0 h-16 text-gray-700 ${
         isScrolledDown && 'text-white'
       }`}
     >

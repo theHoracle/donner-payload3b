@@ -32,12 +32,12 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
       >
         <Providers>
-        <main className="relative min-h-screen flex flex-col scroll-smooth">
+        <main className="">
         {children}
           </main> 
         <Toaster />

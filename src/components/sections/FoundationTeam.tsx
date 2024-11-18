@@ -5,25 +5,26 @@ import Link from "next/link";
 import { HandHeart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/button";
+import { manImage } from "../TestiminialCard";
 
 const team = [
     {
-      image: "/theHoracle.jpg",
+      image: manImage,
       fullName: "John Doe",
       socials: ["https://www.x.com/", "https://www.instagram.com/"],
     },
     {
-      image: "/theHoracle.jpg",
+      image: manImage,
       fullName: "John Doe",
       socials: ["https://www.x.com/", "https://www.instagram.com/"],
     },
     {
-      image: "/theHoracle.jpg",
+      image: manImage,
       fullName: "John Doe",
       socials: ["https://www.x.com/", "https://www.instagram.com/"],
     },
     {
-      image: "/theHoracle.jpg",
+      image: manImage,
       fullName: "John Doe",
       socials: ["https://www.x.com/", "https://www.instagram.com/"],
     },

@@ -1,67 +1,67 @@
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { ArrowRight, Heart } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import Paragraph from '@/components/ui/paragraph';
 
-interface heroProps {
-  heroImage?: string;
-  showButtons?: boolean | null;
-  topic: string;
-  heroText: string;
+interface HeroProps {
+  heroImage?: string
+  showButtons?: boolean
+  topic?: string
+  heroText?: string
+  description?: string
 }
-const Hero = ({ heroImage, heroText, showButtons, topic }: heroProps) => {
+const Hero = ({ 
+  heroImage = '/flat-lay-paper-hand-holding-heart-with-copy-space.jpeg',
+  showButtons = true,
+  topic = 'Empowering Communities',
+  heroText = 'Together We Can Make a Difference',
+  description = 'Join us in our mission to create positive change and improve lives around the world.'
+}: HeroProps
+) => {
   return (
-    <div className="relative md:h-screen w-full">
-      <div className="">
-        <div>
-          <Image
-            src={
-              heroImage ||
-              '/flat-lay-paper-hand-holding-heart-with-copy-space.jpeg'
-            }
-            alt="Hands"
-            fill
-            className="absolute inset-0 object-cover object-center h-full w-full -z-50 bg-black bg-blend-darken"
-          />
-        </div>
-        <div className="py-20 h-screen grid place-items-center">
-          {/* find way center div */}
-          <MaxWidthWrapper>
-            <div className="flex flex-col gap-4 lg:w-1/2 w-3/4  text-white items-start z-20 ">
-              <Paragraph variant="topic" className="-mb-2">
-                {topic}
-              </Paragraph>
-              <h1 className="text-6xl tracking-tighter font-bold capitalize">
-                {heroText}
-              </h1>
-              {showButtons && (
-                <div className="w-full flex flex-col">
-                  {' '}
-                  <p className="uppercase border-t-2 border-red-500 pr-4 text-right w-full">
-                    below poverty line
-                  </p>
-                  <div className="flex items-center justify-start gap-4 py-4">
-                    <Link href="/donate" className={cn(buttonVariants(), 'px-6')}>
-                      Donate
-                    </Link>
-                    <Link
-                      href="/about-us"
-                      className={cn(
-                        'text-primary',
-                        buttonVariants({ variant: 'outline' }),
-                      )}
-                    >
-                      Learn more &rarr;
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
+    <div className="relative h-screen w-screen md:h-screen grid place-items-center">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={heroImage}
+          alt="Hero background"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+      {/* Content Layer */}
+      <div className="relative z-10 flex items-center justify-center h-full flex-col">
+        <MaxWidthWrapper>
+        {/* Main Content */}
+          <div className="text-center max-w-4xl">
+            <span className="inline-block rounded-full bg-primary px-3 py-1 text-sm font-semibold text-primary-foreground mb-4">
+              {topic}
+            </span>
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+              {heroText}
+            </h1>
+            <p className="mx-auto max-w-2xl text-xl text-gray-200 mb-8">
+              {description}
+            </p>
+            {showButtons && (
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link href="/donate" className={cn(buttonVariants({size: 'lg'}), "w-3/4 sm:w-auto text-lg")}>
+                  Donate Now
+                  <Heart className="ml-2 h-5 w-5" />
+                </Link>
+                
+                <Link href="/donate" className={cn(buttonVariants({size: 'lg', variant: 'outline'}), "w-3/4 sm:w-auto text-lg")}>
+                  Learn more
+                  <ArrowRight  />
+                </Link>
+              </div>
+            )}
+          </div>
           </MaxWidthWrapper>
         </div>
-      </div>
     </div>
   );
 };

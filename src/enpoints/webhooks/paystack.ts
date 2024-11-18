@@ -16,9 +16,10 @@ const PaystackWebhook: Endpoint = {
         // @ts-expect-error tye
         const body = await req.text()
         // const SECRET = process.env.PAYSTACK_SECRET_KEY!
-        // const hash = createHmac('sha512', SECRET).update(JSON.stringify(body.toString())).digest('hex');
+        // const hash = createHmac('sha512', SECRET).update(JSON.stringify(body)).digest('hex');
         // const signature = req.headers.get('x-paystack-signature');
-        const ip = req.headers.get('x-forwarded-for')
+        const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim();
+            
         // if (!signature || hash !== signature) {
         console.log('ip: ', ip, 'status: ', PAYSTACK_IPS.includes(ip!))
         if(!ip || !(PAYSTACK_IPS.includes(ip))) {
@@ -27,7 +28,19 @@ const PaystackWebhook: Endpoint = {
                 { status: 401 }
             );
         }
-        const event = body as unknown as PaystackWebhookEvent
+        let event: PaystackWebhookEvent;
+            try {
+                event = JSON.parse(body);
+            } catch (e) {
+                console.log('JSON parse error:', e);
+                return new Response(
+                    JSON.stringify({ error: 'Invalid JSON payload' }),
+                    { 
+                        status: 400,
+                        headers: { 'Content-Type': 'application/json' }
+                    }
+                );
+            }
         const session = event?.data
         if(!session.metadata.userId || !session.metadata.donationId) {
             return Response.json({
@@ -107,6 +120,7 @@ const PaystackWebhook: Endpoint = {
         }
         return Response.json({message: 'No relevant event found'}, {status: 400})
     } catch (error) {
+        console.log(error)
         return Response.json(
             { error: 'Internal Server Error: ' + error  },
             { status: 401 }

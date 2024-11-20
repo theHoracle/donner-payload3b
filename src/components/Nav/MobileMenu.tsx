@@ -1,24 +1,15 @@
 'use client'
-import { PropsWithChildren, useEffect, useState } from "react"
+import { PropsWithChildren } from "react"
 import { Separator } from "../ui/separator"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar"
 import { AppSidebar } from "./app-sidebar"
 import { useIsMobile } from "@/hooks/use-mobile"
-import { getUser } from "@/lib/session"
+
 import { User } from "@/payload-types"
 
 
-const MobileMenu = ({ children }: PropsWithChildren) => {
+const MobileMenu = ({ children, user }: PropsWithChildren & {user: User | null}) => {
     const isMobile = useIsMobile()
-    const [user, setUser] = useState<User | null>(null)
-    
-    useEffect(() => {
-      const getAuthUser = async () => {
-        const userObj = await getUser()
-        setUser(userObj)
-      }
-      getAuthUser()
-    }, [])
 
     if (!isMobile) return children
     return (

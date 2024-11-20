@@ -1,4 +1,3 @@
-
 import NavbarScrollHandler from "./NavbarScrollHandler"
 import MaxWidthWrapper from "../MaxWidthWrapper"
 import Link from "next/link"
@@ -6,13 +5,11 @@ import { buttonVariants } from "../ui/button"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { NavMenubar } from "./NavMenu"
-import { getUser } from "@/lib/session"
+import { User } from "@/payload-types"
 
 
-const Navbar = async () => {
-    const user = await getUser()
+const Navbar = async ({ user }: {user: User | null}) => {
     const initials = user?.email.slice(0,2)
-
 
     return <NavbarScrollHandler>
         <MaxWidthWrapper>

@@ -13,17 +13,19 @@ import Testimonials from "@/components/sections/FoundationTestimonials";
 import NewsletterSub from "@/components/sections/NewsletterSub";
 import { buttonVariants } from "@/components/ui/button";
 import { getAllCauses } from "@/lib/queries";
+import { getUser } from "@/lib/session";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
+  const user = await getUser()
   const {docs: causes} = await getAllCauses()
 
   return (
     <div className=''>
-      <Navbar />
-      <MobileMenu>
+      <Navbar user={user} />
+      <MobileMenu user={user} >
       <div className="">
 
       <div className="md:-mt-16">

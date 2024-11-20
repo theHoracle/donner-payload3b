@@ -1,17 +1,22 @@
 import Footer from "@/components/Footer";
+import MobileMenu from "@/components/Nav/MobileMenu";
 import Navbar from "@/components/Nav/Navbar";
+import { getUser } from "@/lib/session";
 
-export default function PageLayout({
+export default async function PageLayout({
     children,
   }: {
     children: React.ReactNode;
   }) {
+    const user = await getUser()
     return (
         <div className="relative flex flex-col min-w-full">
-            <Navbar />
-            <div className="-mt-16">
+            <Navbar user={user} />
+            <MobileMenu user={user}>
+            <div className="sm:-mt-16">
             {children}
             </div>
+            </MobileMenu>
             <Footer />
         </div>
     )

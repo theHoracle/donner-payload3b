@@ -1,5 +1,4 @@
-import { getServerSideUser } from "@/lib/payload-utils"
-import { cookies } from "next/headers"
+
 import NavbarScrollHandler from "./NavbarScrollHandler"
 import MaxWidthWrapper from "../MaxWidthWrapper"
 import Link from "next/link"
@@ -7,11 +6,11 @@ import { buttonVariants } from "../ui/button"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { NavMenubar } from "./NavMenu"
+import { getUser } from "@/lib/session"
 
 
 const Navbar = async () => {
-    const nextCookies = await cookies()
-    const { user } = await getServerSideUser(nextCookies)
+    const user = await getUser()
     const initials = user?.email.slice(0,2)
 
 

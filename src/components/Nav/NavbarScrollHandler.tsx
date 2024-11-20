@@ -40,9 +40,7 @@ const NavbarScrollHandler = ({ children }: NavbarScrollHandlerProps) => {
   if(isMobile) return null
   return (
     <div
-      className={`sticky z-50 md:block top-0 inset-x-0 h-16 text-gray-700 ${
-        isScrolledDown && 'text-white'
-      }`}
+      className='sticky z-50 md:block top-0 inset-x-0 h-16 text-stone-100'
     >
       <div className="relative">
         <div

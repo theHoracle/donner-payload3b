@@ -1,82 +1,118 @@
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { Mail, Phone } from "lucide-react";
+import {SocialIcon} from 'react-social-icons'
 
 const Footer = () => {
   const footerLinks = [
     ["About us", "/about-us"],
-    ["Volunteer", "#volunteer"],
-    ["Causes", "/causes"],
+    ["Volunteer", "/volunteer"],
+    ["Causes", "/donate"],
     ["Projects", "/projects"],
     ["Team", "/team"],
   ];
 
+  const socialLinks = [
+   'https://www.x.com/donner',
+   'https://www.facebook.com/donner',
+   'https://www.instagram.com/donner',
+  
+  ]
+
   return (
     <footer className="bg-gray-800 text-gray-300 text-sm">
+       {/* Sponsors Section */}
+       <div className="container mx-auto py-8 px-4">
+        <h3 className="text-2xl font-semibold text-center mb-6">Our Sponsors</h3>
+        <div className="flex justify-center items-center space-x-8">
+          {[1, 2, 3, 4].map((i) => (
+            <Image
+              key={i}
+              src={`/placeholder.svg?height=60&width=120`}
+              alt={`Sponsor ${i}`}
+              width={120}
+              height={60}
+              className="opacity-70 hover:opacity-100 transition-opacity"
+            />
+          ))}
+        </div>
+      </div>
       <MaxWidthWrapper>
-        <div className="flex flex-col items-center">
-          <div className="grid md:grid-cols-3 gap-4 py-20">
-            <div className="col-span-1 flex flex-col items-center md:items-start">
-              <div className="">LOgo</div>
-              <p>
-                At donner foundation Lorem ipsum dolor sit amet consectetur,
-                adipisicing elit. Consequuntur aliquid laboriosam at quidem
-                eveniet excepturi dolores odio blanditiis reprehenderit unde!
-              </p>
-              <div>{/* socials */}</div>
+         {/* Main Footer Content */}
+      <div className="bg-gray-800 text-white">
+        <div className="container mx-auto py-12 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Logo and Description */}
+            <div className="space-y-4">
+              <Image src="/placeholder.svg?height=60&width=200" alt="Donner Foundation Logo" width={200} height={60} />
+              <h2 className="text-2xl font-bold">Donner Foundation</h2>
+              <p className="text-gray-300">Empowering communities through generosity and compassion.</p>
             </div>
-            <div className="bg-gray-700 rounded-md px-16 py-10 md:col-span-2 grid grid-cols-2">
-              <div className="col-span-1">
-                <h4 className="font-semibold text-base tracking-tight leading-tight">
-                  Get Involved
-                </h4>
-                <ul className="mt-2">
-                  {footerLinks.map((link, index) => {
-                    return (
-                      <li key={index} className="hover:text-gray-200 my-1">
-                        <Link
-                          href={link[1]}
-                          className={cn({
-                            "text-red-500": link[0] === "Causes",
-                          })}
-                        >
-                          {link[0]}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-              <div className="col-span-1">
-                <h4 className="font-semibold text-base tracking-tight leading-tight">
-                  Contact Us
-                </h4>
-                <ul className="mt-2">
-                  <li className="hover:text-gray-200 my-1">
-                    <Link href="https://www.google.com/maps/place/Point+Nemo/@-20.6582431,116.9901134,17z/data=!3m1!4b1!4m6!3m5!1s0x2bf60dd1a4451b0d:0xf2fad44f56f5c493!8m2!3d-20.6582431!4d116.9926937!16s%2Fg%2F11gh_gbl4m?entry=ttu">
-                      Taurus, Jupiter.
+
+            {/* Quick Links */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                {footerLinks.map((link) => (
+                  <li key={link[0]}>
+                    <Link href={link[1]} className="hover:text-gray-300 transition-colors">
+                      {link[0]}
                     </Link>
                   </li>
-                  <li className="hover:text-gray-200 my-1">
-                    <Link href="mailto:help@donnerfoundation.com">
-                      help@donnerfoundation.com
-                    </Link>
-                  </li>
-                  <li className="hover:text-gray-200 my-1">
-                    <Link href="tel:+2341234567891">234 123 4567 891</Link>
-                  </li>
-                </ul>
+                ))}
+              </ul>
+            </div>
+
+           {/* Contact Information */}
+           <div>
+              <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center">
+                  <Phone size={18} className="mr-2" />
+                  <span>(123) 456-7890</span>
+                </li>
+                <li className="flex items-center">
+                  <Mail size={18} className="mr-2" />
+                  <a href="mailto:info@donnerfoundation.org" className="hover:text-gray-300 transition-colors">
+                    info@donnerfoundation.org
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Social Links */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
+              <div className="flex space-x-4">
+                {socialLinks.map((link, index) => (
+                  <SocialIcon key={index} 
+                    href={link}
+                    bgColor="transparent"  />
+                ))}
               </div>
             </div>
-          </div>
-          <div className="flex flex-col items-center ">
-            <div className="h-px w-screen bg-muted-foreground" aria-hidden />
-            <p className="text-center py-2">
-              Copyrights &copy; Donner Foundation {new Date().getFullYear()}.
-              All Rights Reserved
-            </p>
           </div>
         </div>
+      </div>
+
+      {/* Copyright and Creator Info */}
+      <div className="bg-gray-900 text-gray-400 py-4">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm">
+          <p>&copy; 2024 Donner Foundation. All rights reserved.</p>
+          <p className="mt-2 sm:mt-0">
+            Website by{' '}
+            <a
+              href="https://thehoracledev.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors"
+            >
+              theHoracle.dev
+            </a>
+          </p>
+        </div>
+      </div>
       </MaxWidthWrapper>
     </footer>
   );

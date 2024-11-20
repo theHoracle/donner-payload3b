@@ -12,6 +12,8 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import Link from "next/link"
+import { buttonVariants } from "../ui/button"
 
 // This is nav data.
 const data = {
@@ -93,7 +95,12 @@ const data = {
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ 
+  user, ...props 
+}: React.ComponentProps<typeof Sidebar> & {
+  user: string | null | undefined
+}) {
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -116,6 +123,38 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
+        <SidebarMenuItem>
+          {!user ? <SidebarMenuButton>
+            <Link
+            className={buttonVariants()}
+            href='/auth/login'
+            >
+            </Link>
+          </SidebarMenuButton> : 
+          <NavMain items={
+            [
+              {
+                title: 'Profile',
+                url: "#",
+                items: [
+                  {
+                    title: `- ${user}`,
+                    url: "#",
+                  },
+                  {
+                    title: "Donations",
+                    url: "/user/donations",
+                  },
+                  {
+                    title: "Logout",
+                    url: "/auth/logout",
+                  },
+                ],
+              },
+            ]
+          } />
+          }
+        </SidebarMenuItem>
       <SidebarFooter>
         <div className="p-1">
           <SidebarOptInForm />
@@ -125,3 +164,4 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     </Sidebar>
   )
 }
+

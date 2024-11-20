@@ -47,6 +47,7 @@
     "react": "19.0.0-rc-b7e21579-20241031",
     "react-dom": "19.0.0-rc-b7e21579-20241031",
     "react-hook-form": "^7.53.1",
+    "react-social-icons": "^6.18.0",
     "sharp": "0.32.6",
     "sonner": "^1.7.0",
     "swiper": "^11.1.14",

@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { getServerSideUser } from "./payload-utils";
 
 export async function getJWTSession() {
   const session = (await cookies()).get("JWTSession")?.value;
@@ -14,4 +15,10 @@ export async function setJWTSession(token: string) {
     secure: true,
     sameSite: "lax",
   });
+}
+
+export async function getUser() {
+  const nextCookies = await cookies()
+  const { user } = await getServerSideUser(nextCookies)
+  return user
 }

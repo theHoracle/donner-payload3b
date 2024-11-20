@@ -50,7 +50,7 @@ export function AppSidebar({
             <Link
             className={buttonVariants()}
             href='/auth/login'
-            >
+            > Login
             </Link>
           </SidebarMenuButton> : 
           <NavMain items={

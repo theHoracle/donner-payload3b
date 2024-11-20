@@ -20,7 +20,7 @@ const MobileMenu = ({ children, user }: PropsWithChildren & {user: User | null})
         <Separator orientation="vertical" className="mr-2 h-4" />
         <h1>Donner</h1>
       </header>
-       <div className="abosolute w-screen max-w-3xl overflow-hidden">
+       <div className="absolute w-screen max-w-3xl overflow-hidden">
       {children}
         </div>
     </SidebarInset>

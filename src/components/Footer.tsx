@@ -20,13 +20,20 @@ const Footer = () => {
   
   ]
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const sponsorsLogos = [
+    '/placeholder.svg',
+    '/placeholder.svg',
+    '/placeholder.svg',
+  ]
+
   return (
     <footer className="bg-gray-800 text-gray-300 text-sm">
        {/* Sponsors Section */}
        <div className="container mx-auto py-8 px-4">
         <h3 className="text-2xl font-semibold text-center mb-6">Our Sponsors</h3>
-        <div className="flex justify-center items-center space-x-8">
-          {[1, 2, 3, 4].map((i) => (
+        {/* <div className="flex justify-center items-center space-x-8">
+          {sponsorsLogos.map((i) => (
             <Image
               key={i}
               src={`/placeholder.svg?height=60&width=120`}
@@ -36,7 +43,7 @@ const Footer = () => {
               className="opacity-70 hover:opacity-100 transition-opacity"
             />
           ))}
-        </div>
+        </div> */}
       </div>
       <MaxWidthWrapper>
          {/* Main Footer Content */}
@@ -87,7 +94,7 @@ const Footer = () => {
               <div className="flex space-x-4">
                 {socialLinks.map((link, index) => (
                   <SocialIcon key={index} 
-                    href={link}
+                    url={link}
                     bgColor="transparent"  />
                 ))}
               </div>

@@ -27,7 +27,8 @@ export function NavMain({
     isActive?: boolean
     items?: {
       title: string
-      url: string
+      url: string,
+      description?: string
     }[]
   }[]
 }) {

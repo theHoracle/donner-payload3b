@@ -1,50 +1,89 @@
-import React from "react";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem } from "@/components/ui/sidebar";
+import { NavMain } from "./nav-main"
+import * as React from "react"
+import { GalleryVerticalEnd } from "lucide-react"
+import { SidebarOptInForm } from "@/components/sidebar-opt-in-form"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarRail,
+} from "@/components/ui/sidebar"
+import Link from "next/link"
+import { buttonVariants } from "../ui/button"
+import { navData } from "@/data/nav"
 
-import Link from "next/link";
-import { buttonVariants } from "../ui/button";
-import { navData } from "@/data/nav";
 
-export function AppSidebar({ user }: { user: string | null | undefined }) {
+export function AppSidebar({ 
+  user, ...props 
+}: React.ComponentProps<typeof Sidebar> & {
+  user: string | null | undefined
+}) {
+
   return (
-    <Sidebar>
+    <Sidebar {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Link href="/" className="flex flex-col items-start">
-              <span className="text-lg font-semibold">Donner Foundation</span>
-              <span className="text-sm text-muted-foreground">We rise by lifting others</span>
-            </Link>
+            <SidebarMenuButton size="lg" asChild>
+              <a href="#">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <GalleryVerticalEnd className="size-4" />
+                </div>
+                <div className="flex flex-col gap-0.5 leading-none">
+                  <span className="font-semibold">Donner Foundation</span>
+                  <span className="">We rise by lifting others</span>
+                </div>
+              </a>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {Object.values(navData).map((section) => (
-          <div key={section.title} className="mb-4">
-            <h3 className="font-semibold text-muted-foreground">{section.title}</h3>
-            <ul>
-              {section.items.map((item) => (
-                <li key={item.title}>
-                  <Link href={item.url} className="block p-2 hover:bg-accent hover:text-accent-foreground">
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <NavMain items={Object.values(navData)} />
       </SidebarContent>
+        <SidebarMenuItem>
+          {!user ? <SidebarMenuButton>
+            <Link
+            className={buttonVariants()}
+            href='/auth/login'
+            >
+            </Link>
+          </SidebarMenuButton> : 
+          <NavMain items={
+            [
+              {
+                title: 'Profile',
+                url: "#",
+                items: [
+                  {
+                    title: `- ${user}`,
+                    url: "#",
+                  },
+                  {
+                    title: "Donations",
+                    url: "/user/donations",
+                  },
+                  {
+                    title: "Logout",
+                    url: "/auth/logout",
+                  },
+                ],
+              },
+            ]
+          } />
+          }
+        </SidebarMenuItem>
       <SidebarFooter>
-        {user ? (
-          <Link href="/user/profile" className={buttonVariants({ variant: "outline" })}>
-            View Profile
-          </Link>
-        ) : (
-          <Link href="/auth/login" className={buttonVariants({ variant: "default" })}>
-            Login
-          </Link>
-        )}
+        <div className="p-1">
+          <SidebarOptInForm />
+        </div>
       </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
-  );
+  )
 }
+

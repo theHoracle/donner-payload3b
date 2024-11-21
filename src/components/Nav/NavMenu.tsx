@@ -46,8 +46,8 @@ export function NavMenubar() {
                 </NavigationMenuLink>
               </li>
               {navData.foundation.items.map((item, index) => (
-                <ListItem key={index} href={item.url} title="Installation">
-                  {item.title}
+                <ListItem key={index} href={item.url} title={item.title}>
+                  {item.description}
               </ListItem>)
             )}            
           </ul>

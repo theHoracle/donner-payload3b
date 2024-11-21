@@ -48,12 +48,12 @@ const Hero = ({
             </p>
             {showButtons && (
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link href="/donate" className={cn(buttonVariants({size: 'lg'}), "w-3/4 sm:w-auto text-lg")}>
+                <Link href="/donate#causes" className={cn(buttonVariants({size: 'lg'}), "w-3/4 sm:w-auto text-lg")}>
                   Donate Now
                   <Heart className="ml-2 h-5 w-5" />
                 </Link>
                 
-                <Link href="/donate" className={cn(buttonVariants({size: 'lg', variant: 'outline'}), "w-3/4 sm:w-auto text-lg")}>
+                <Link href="/faq" className={cn(buttonVariants({size: 'lg', variant: 'outline'}), "w-3/4 sm:w-auto text-lg")}>
                   Learn more
                   <ArrowRight  />
                 </Link>

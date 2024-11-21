@@ -31,7 +31,7 @@ const CauseCard = ({ cause }: CauseCardProps) => {
           <div className="px-3 py-2.5 flex flex-col gap-3">
             <h3 className="font-medium text-sm">{cause.title}</h3>
             <ProgressBar raisedAmount={cause.raisedAmount} target={cause.target} />
-            <Link href={`/donate/${cause.slug}`} className={cn(buttonVariants())}>
+            <Link href={`/donate/${cause.slug}#cause`} className={cn(buttonVariants())}>
               Donate
             </Link>
           </div>

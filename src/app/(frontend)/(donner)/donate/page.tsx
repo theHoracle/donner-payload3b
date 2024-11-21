@@ -22,7 +22,7 @@ const Causes = async () => {
     <main className="flex flex-col">
       <Hero heroText="Donate To Our Causes" topic="Donations" />
       <MaxWidthWrapper>
-        <section className="py-20">
+        <section id="causes" className="py-20">
           <CauseReel causes={cause} />
         </section>
       </MaxWidthWrapper>

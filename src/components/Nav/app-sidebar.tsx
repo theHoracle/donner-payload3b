@@ -46,7 +46,7 @@ export function AppSidebar({
         <NavMain items={Object.values(navData)} />
       </SidebarContent>
         <SidebarMenuItem>
-          {!user ? <SidebarMenuButton>
+          {!user ? <SidebarMenuButton className="min-w-full">
             <Link
             className={buttonVariants()}
             href='/auth/login'
@@ -60,7 +60,7 @@ export function AppSidebar({
                 url: "#",
                 items: [
                   {
-                    title: `- ${user}`,
+                    title: `• ${user}`,
                     url: "#",
                   },
                   {

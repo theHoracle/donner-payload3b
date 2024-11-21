@@ -13,15 +13,15 @@ const Navbar = async ({ user }: {user: User | null}) => {
 
     return <NavbarScrollHandler>
         <MaxWidthWrapper>
-          <div className="md:flex hidden items-center h-16 justify-between gap-16">
+          <div className="md:flex hidden items-center h-16 justify-between gap-16 text-stone-100">
           <div className="md:ml-4 flex flex-1">
             <Link href="/">
             <span
-            className="font-bold text-3xl leading-tight tracking-tighter"
+            className="font-bold text-3xl leading-tigh tracking-tighter"
             >Donner</span> 
             </Link>
           </div>
-          <div className="flex-[2]">
+          <div className="flex-[2] flex items-center justify-center flex-col">
             <NavMenubar />
           </div>
             {/* sign in / up */}

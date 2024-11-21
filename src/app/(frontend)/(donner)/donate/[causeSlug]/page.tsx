@@ -10,6 +10,7 @@ import { cookies } from "next/headers"
 import { getServerSideUser } from "@/lib/payload-utils"
 import MakeDonation from "@/components/MakeDonation"
 import { Metadata } from "next";
+import Hero from "@/components/Hero"
 
 export const metadata: Metadata = {
   title: "Make Donation",
@@ -41,8 +42,14 @@ const CausePage = async ({params}: PageProps) => {
 
 
     return <div>
+        <Hero heroImage={validUrls[0]} 
+            heroText={cause.title}
+            description=""
+            topic="Donate"
+            showButtons={false}
+            />
       <MaxWidthWrapper className='bg-white'>
-       <div className='bg-white'>
+       <section id="cause" className='bg-white'>
         <div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8'> 
 
             {/* Product Details */}
@@ -81,8 +88,7 @@ const CausePage = async ({params}: PageProps) => {
                 </div>
             </div>
         </div>
-    </div>
-
+    </section>
     <CauseReel causes={allCauses} />
     </MaxWidthWrapper>
     </div>

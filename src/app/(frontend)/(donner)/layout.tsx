@@ -13,11 +13,11 @@ export default async function PageLayout({
         <div className="relative flex flex-col min-w-full">
             <Navbar user={user} />
             <MobileMenu user={user}>
-            <div className="sm:-mt-16">
+            <div className="sm:-mt-16 flex flex-col">
             {children}
             </div>
-            </MobileMenu>
             <Footer />
+            </MobileMenu>
         </div>
     )
 }

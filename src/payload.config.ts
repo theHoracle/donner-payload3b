@@ -7,6 +7,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { resendAdapter } from '@payloadcms/email-resend'
+import  { s3Storage } from '@payloadcms/storage-s3'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -56,7 +57,20 @@ export default buildConfig({
   cors: [process.env.NEXT_PUBLIC_SERVER_URL!],
   csrf: [process.env.NEXT_PUBLIC_SERVER_URL!],
   plugins: [
-    // storage-adapter-placeholder
+    s3Storage({
+      collections: {
+        media: true,
+      },
+      bucket: process.env.SUPABASE_BUCKET!,
+      config: {
+        credentials: {
+          accessKeyId: process.env.SUPABASE_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.SUPABASE_SECRET_ACCESS_KEY!,
+        },
+        region: process.env.SUPABASE_REGION,
+        // ... Other S3 configuration
+      },
+    }),
   ],
   sharp,
 })

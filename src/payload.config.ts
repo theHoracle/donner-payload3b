@@ -59,7 +59,7 @@ export default buildConfig({
   plugins: [
     s3Storage({
       collections: { 
-        media: true,
+        media: true
       },
       bucket: process.env.SUPABASE_BUCKET!,
       config: {
@@ -67,6 +67,7 @@ export default buildConfig({
           accessKeyId: process.env.SUPABASE_ACCESS_KEY_ID!,
           secretAccessKey: process.env.SUPABASE_SECRET_ACCESS_KEY!,
         },
+        endpoint: process.env.SUPABASE_ENDPOINT!,
         region: process.env.SUPABASE_REGION,
         // ... Other S3 configuration
       },

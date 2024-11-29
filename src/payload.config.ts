@@ -58,7 +58,7 @@ export default buildConfig({
   csrf: [process.env.NEXT_PUBLIC_SERVER_URL!],
   plugins: [
     s3Storage({
-      collections: {
+      collections: { 
         media: true,
       },
       bucket: process.env.SUPABASE_BUCKET!,

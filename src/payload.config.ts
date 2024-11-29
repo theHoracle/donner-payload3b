@@ -69,6 +69,7 @@ export default buildConfig({
         },
         endpoint: process.env.SUPABASE_ENDPOINT!,
         region: process.env.SUPABASE_REGION,
+        forcePathStyle: true,
         // ... Other S3 configuration
       },
     }),

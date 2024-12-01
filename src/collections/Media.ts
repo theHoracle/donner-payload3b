@@ -12,6 +12,8 @@ export const Media: CollectionConfig = {
   },
   upload: {
     staticDir: "media",
+    disableLocalStorage: true,
+    adminThumbnail: 'thumbnail', // ({ doc }) => `${doc.thumbnailURL}`
     imageSizes: [
       {
         name: "thumbnail",
@@ -32,9 +34,10 @@ export const Media: CollectionConfig = {
         position: "centre",
       },
     ],
-    adminThumbnail: 'thumbnail',
     mimeTypes: ["image/*"],
   },
+  disableDuplicate: true,
+
   fields: [
     {
       name: "user",

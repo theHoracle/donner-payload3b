@@ -25,6 +25,8 @@ const ImageSwiper = ({ urls }: ImageSwiperProps) => {
     isEnd: activeIndex === (urls.length ?? 0) - 1,
   })
 
+  console.table(urls)
+
   useEffect(() => {
     swiper?.on('slideChange', ({ activeIndex }) => {
       setActiveIndex(activeIndex)

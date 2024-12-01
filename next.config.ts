@@ -12,18 +12,17 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: process.env.NEXT_PUBLIC_SERVER_URL || 'donner-payload3b.vercel.app',
-        pathname: '/_next/image**', // allow images processed by Next.js
+        protocol: 'http',
+        hostname: 'localhost',
+        pathname: '/api/media/file/**', //  allow only media files from API
       },
       {
         protocol: 'https',
-        hostname: process.env.NEXT_PUBLIC_SERVER_URL || 'donner-payload3b.vercel.app',
-        pathname: '/api/media/file/**', //  allow media files from API
+        hostname: process.env.NEXT_PUBLIC_HOSTNAME || 'vercel',
+        pathname: '/api/media/file/**', 
       },
     ],
   },

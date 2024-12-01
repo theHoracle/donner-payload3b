@@ -22,14 +22,17 @@ interface PageProps {
 
 const CausePage = async ({params}: PageProps) => {
     const causeSlug = (await params).causeSlug
-    const [{docs: allCauses}, {docs: primaryCause}] = await Promise.all([
+    const [
+        {user},
+        {docs: allCauses}, 
+        {docs: primaryCause}
+    ] = await Promise.all([
+        getServerSideUser(await cookies()),
         getAllCauses(),
-        getCause(causeSlug)
+        getCause(causeSlug)   
     ])
     const [cause] = primaryCause
 
-    const authCookie = await cookies()
-    const { user } = await getServerSideUser(authCookie)
     
     if(!cause) return notFound()
 

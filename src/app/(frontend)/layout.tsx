@@ -16,12 +16,38 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+const twitterSite = process.env.NEXT_PUBLIC_SERVER_URL || ''; 
 export const metadata: Metadata = {
   title: {
     template: "%s | Donner Foundation",
     default: "Donner Foundation",
   },
   description: "Donner Foundation website - For Updates, Donations",
+  metadataBase: new URL(twitterSite!),
+  robots: {
+    follow: true,
+    index: true
+  },
+  twitter: {
+    title: 'Donner Foundation',
+    card: 'summary_large_image',
+    images: ['/opengraph-image.png'],
+    description: 'Donner Foundation',
+  },
+  openGraph: {
+    title: 'Donner Foundation',
+    description: "Donner Foundation is a NGO focused on helping the needy",
+    url: twitterSite,
+    siteName: 'Donner Foundation',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Donner Foundation Website by <theHoracle />'
+      }
+    ],
+  }
 };
 
 export const revalidate = 86400; // One day

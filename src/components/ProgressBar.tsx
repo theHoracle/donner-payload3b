@@ -17,8 +17,8 @@ const ProgressBar = ({raisedAmount, target}: ProgressBarProps) => {
         }
       })();
     return <div>
-    <Progress value={progressPercentage} className="h-1 bg-white" />
-    <div className="flex items-center  justify-between mx-0 my-1 text-xs">
+    <Progress value={progressPercentage} className="h-1 w-full bg-stone-100" />
+    <div className="flex items-center justify-between mx-0 my-1 text-xs">
       <p className="text-muted-foreground">
         Raised: {formatPrice(raisedAmount)}
       </p>

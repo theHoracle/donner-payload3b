@@ -9,7 +9,6 @@ import { cookies } from "next/headers"
 import { getServerSideUser } from "@/lib/payload-utils"
 import MakeDonation from "@/components/MakeDonation"
 import { Metadata } from "next";
-import Hero from "@/components/Hero"
 
 export const metadata: Metadata = {
   title: "Make Donation",
@@ -68,8 +67,8 @@ const CausePage = async ({params}: PageProps) => {
 
             <div className='lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start'>
                 <div>
-                    <div className='my-6 flex flex-col gap-2 text-muted-foreground text-sm'>
-                        <p>Help us get to our goal ❤️</p>
+                    <div className='my-6 flex flex-col  gap-2 text-muted-foreground text-sm'>
+                        <p className="text-center w-full">Help us get to our goal ❤️</p>
                         <ProgressBar target={cause.target} raisedAmount={cause.raisedAmount} />
                     </div>
                     <div className='bg-gray-100 px-6 py-4 rounded-lg'>

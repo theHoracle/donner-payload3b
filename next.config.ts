@@ -16,12 +16,14 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
+        protocol: 'https',
+        hostname: process.env.NEXT_PUBLIC_SERVER_URL || 'donner-payload3b.vercel.app',
+        pathname: '/_next/image**', // allow images processed by Next.js
       },
       {
         protocol: 'https',
-        hostname: 'vercel',
+        hostname: process.env.NEXT_PUBLIC_SERVER_URL || 'donner-payload3b.vercel.app',
+        pathname: '/api/media/file/**', //  allow media files from API
       },
     ],
   },

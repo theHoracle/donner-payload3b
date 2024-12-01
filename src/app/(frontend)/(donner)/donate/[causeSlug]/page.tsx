@@ -1,6 +1,5 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import { notFound } from "next/navigation"
-
 import ImageSwiper from "@/components/ui/image-swiper"
 import ProgressBar from "@/components/ProgressBar"
 import { getAllCauses, getCause } from "@/lib/queries"
@@ -42,12 +41,7 @@ const CausePage = async ({params}: PageProps) => {
 
 
     return <div>
-        <Hero heroImage={validUrls[0]} 
-            heroText={cause.title}
-            description=""
-            topic="Donate"
-            showButtons={false}
-            />
+        <div aria-hidden className="hidden md:block bg-stone-500/70 -z-10 h-16" />
       <MaxWidthWrapper className='bg-white'>
        <section id="cause" className='bg-white'>
         <div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8'> 
@@ -61,11 +55,7 @@ const CausePage = async ({params}: PageProps) => {
                 </div>
 
                 <section className='mt-4'>
-                    {/*  */}
-
-                    {/* <div className='mt-4 space-y-6' dangerouslySetInnerHTML={markedDesc} /> */}
                     <RichText content={cause.description} />
-                    
                 </section>
             </div>
 

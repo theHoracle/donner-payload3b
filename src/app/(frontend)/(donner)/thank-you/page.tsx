@@ -58,7 +58,10 @@ const Page = async (props: PageProps) => {
   const image = cause?.images?.[0]?.image;
 
   return (
-    <main className="relative lg:min-h-full">
+    <main >
+      <div aria-hidden className="hidden md:block bg-stone-500/70 -z-10 h-16" />
+      <div className="relative lg:min-h-full">
+
       {/* Left Image Section */}
       <div className="h-full px-4 hidden lg:block overflow-hidden lg:absolute lg:w-1/2 lg:pr-4 xl:pr-12">
         <Image
@@ -119,8 +122,8 @@ const Page = async (props: PageProps) => {
                     alt={`${cause?.title || "Cause"} image`}
                     fill
                     className="flex-none rounded-md bg-gray-100 object-cover object-center"
-                  />
-                )}
+                    />
+                  )}
               </div>
               <div className="flex-auto flex flex-col">
                 <div className="space-y-1">
@@ -147,6 +150,7 @@ const Page = async (props: PageProps) => {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </main>
   );

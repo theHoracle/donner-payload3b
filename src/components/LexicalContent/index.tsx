@@ -48,7 +48,7 @@ function calculateAspectRatio(width: number, height: number): string {
 const TextComponent: FC<TextComponentProps> = ({ children, format }) => {
   const formatFunctions: { [key: number]: (child: ReactElement | string) => ReactElement } = {
     [IS_BOLD]: (child) => <strong>{child}</strong>,
-    [IS_ITALIC]: (child) => <em>{child}</em>,
+    [IS_ITALIC]: (child) => <em className="font-medium">{child}</em>,
     [IS_STRIKETHROUGH]: (child) => <del>{child}</del>,
     [IS_UNDERLINE]: (child) => <u>{child}</u>,
     [IS_CODE]: (child) => <code>{child}</code>,
@@ -130,7 +130,7 @@ const LexicalContent: React.FC<{
         return <SerializedLink key={ix} node={node} locale={locale || 'en'} children={serializedChildren} />
       case 'list':
         const ListTag = node.listType === 'bullet' ? 'ul' : 'ol'
-        attributes.className = clsx(attributes.className, 'mb-4 pl-8', ListTag === 'ol' ? 'list-decimal' : 'list-disc')
+        attributes.className = clsx(attributes.className, 'space-y-1 pl-5', ListTag === 'ol' ? 'list-decimal' : 'list-disc')
         return (
           <ListTag key={ix} {...attributes}>
             {serializedChildren}
